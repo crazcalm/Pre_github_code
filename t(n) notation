@@ -1,0 +1,76 @@
+"""
+The t(n) function counts the number of divisors of a given natural number N.
+
+It does this by writting the number in terms of its prime factorization. It then takes the powers of 
+of these primes adds 1 and then multiple them together.
+
+In theory it counts the number of possible combinations of the prime factorization.
+
+My function:
+    
+    Given a number N, t(number) will return the total number of possible divisors of N.
+    
+The answer is: The first triangle number with over 500 digits is: 76576500
+                                                    my answer   ,842161320
+
+"""
+
+import math
+
+#my prime number sieve
+def Eratosthenes(number):
+    
+    number = int(number)
+    
+    list = range(3, number +1,2)
+    list.insert(0, 2)
+    
+    count = 0
+    
+    while count <len(list):
+        
+        prime = list[count]
+        
+        for x in list:
+            
+            if x % prime == 0 and x != prime:
+                
+                list.remove(x)
+                
+        count += 1
+        
+    
+    return list
+
+def t(number):
+    
+    number = int(number)
+    prime_list =  Eratosthenes(number)
+    powers_intial = int(math.floor(math.sqrt(number)))
+    
+    powers_list = range(powers_intial,0,-1)
+    powers = []
+    num_of_divisors = 1
+    
+    
+    for p in prime_list:
+        if number % p == 0:
+           
+            for power in powers_list:
+                
+                if number % p**power == 0:
+                    powers.append(power + 1)
+                    
+                    break
+    
+    for x in powers:
+        num_of_divisors *= x
+                    
+    
+    print "The number", number, " has", num_of_divisors, " possible divisors"            
+    return num_of_divisors
+
+x = raw_input("Give me a natural number greater than 3: ")
+
+t(x)
+
