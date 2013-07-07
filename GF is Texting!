@@ -1,0 +1,27 @@
+"""
+My girlfriend did not have a phone for a while and anytime she would try to contact me, 
+she would use facebook are another social network to reach me. I do not check those to often, 
+so I would miss a lit of her messages. So I write this code to fix that.
+
+I used the googlevoice api to access my google voice account and let my girlfriend use my phone number to send me
+text messages.
+
+The online googlevoice for python 2.7 had an incorrect web link in it that I have replaced. 
+I will post that file as well. 
+"""
+
+from googlevoice import Voice, util
+
+
+
+def main():
+    voice = Voice()
+    voice.login("your_email_name@gmail.com", "email_password")
+
+    phoneNumber = "google_voice_phone_number"
+    text = raw_input("write your text here: ")
+
+    voice.send_sms(phoneNumber, text)
+    
+if __name__ == '__main__':
+    main()
