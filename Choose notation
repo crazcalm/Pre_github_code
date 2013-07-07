@@ -1,0 +1,29 @@
+"""
+Define n choose r = n!/(r! * (n-r)!), where r is greater than zero and less than or equal to n.
+
+Also, both n and r are natural numbers
+"""
+from math import factorial
+
+def choose_notation(n,r):
+    
+    n= int(n)
+    r= int(r)
+    orignial_n = n
+    original_r = r    
+    n_minus_r = n-r
+    
+    n = factorial(n)
+    r = factorial(r)
+    n_minus_r = factorial(n_minus_r)
+    
+    print  orignial_n,"choose", original_r, " is:", n/(r * n_minus_r)
+    return orignial_n,"choose", original_r, " is:", n/(r * n_minus_r)
+    
+    
+print "This is the Choose Notation! (ie, n choose r)"
+
+n = raw_input("Give me a natural number for n: ")
+r = raw_input("Give me a natural number (that is less than n) for r: ")
+
+choose_notation(n,r)
